@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Trend X - Unveiling Tomorrow's Markets, Today</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Favicon -->
+    <link href="{{ url_for('static', filename='img/favicon.ico') }}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&family=Jost:wght@500;600;700&display=swap" rel="stylesheet"> 
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{{ url_for('static', filename='lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="" class="navbar-brand p-0">
+                    <h1 class="m-0">Trend X</h1>
+                     
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto py-0">
+                        <a href="{{ url_for('index') }}" class="nav-item nav-link">Home</a>
+                        <a href="{{ url_for('about') }}" class="nav-item nav-link active">Demographic</a>
+                        <a href="{{ url_for('demand_predict') }}" class="nav-item nav-link">Demand</a> 
+                        <a href="{{ url_for('idea') }}" class="nav-item nav-link">Idea</a> 
+<!--
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="team.html" class="dropdown-item">Our Team</a>
+                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                                <a href="404.html" class="dropdown-item">404 Page</a>
+                            </div>
+                        </div>
+-->
+                        
+                    </div>
+                   <!-- <a href="" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Get Started</a> -->
+                </div>
+            </nav>
+
+            <div class="container-xxl py-5 bg-primary hero-header">
+                <div class="container my-5 py-5 px-lg-5">
+                    
+                </div>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+
+
+        <!-- Feature Start -->
+        <div class="container-xxl py-5">
+            
+            <div class="container py-5 px-lg-5">
+    
+                <div class="row g-4"> 
+                    <input type="submit" class="btn py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft" value="Main Category: {{ main_category }}           Sub Category: {{ sub_category }}">
+                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                        <form method="post" id="myForm">
+                            <div class="f-img">
+                                <div class="feature-item bg-light rounded text-center p-4">
+                                    <i class="fa fa-3x fa-search text-primary mb-4"></i>
+                                    <div class="f-text">
+                                        <h4>Main Category</h4>
+                                <div class="dropdown">
+                                    <select class="form-selectz" id="main_category" name="main_category">
+                                        <option value="" selected disabled>Select Main Category</option>
+                                    </select>
+                                </div>
+                                <br><br>
+                                <h4>Sub Category</h4>
+                                <div class="dropdown">
+                                    <select class="form-selectz" id="sub_category" name="sub_category" disabled>
+                                        <option value="" selected disabled>Select Sub Category</option>
+                                    </select>
+                                </div>
+                                        <br>
+                                        <input type="submit" class="btn btn-secondary py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft" value="Predict">
+                                    </div>
+                                 </div>
+                            </div>
+                            
+                        </form>
+                    </div>
+                    <script>
+                        document.getElementById('myForm').addEventListener('submit', function(event) {
+                            const mainCategory = document.getElementById('main_category');
+                            const subCategory = document.getElementById('sub_category');
+                
+                            if (mainCategory.value === '' || subCategory.value === '') {
+                                event.preventDefault();
+                                alert('Please select both a main category and a subcategory.');
+                            }
+                        });
+                    </script>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="service-item d-flex flex-column text-center rounded">
+                            <div class="service-icon flex-shrink-0">
+                                <i class="fa fa-laptop-code fa-2x"></i>
+                            </div>
+                            <h3 class="mb-3">Predicted Top 3 Countries</h3>
+                            <br>
+                               <h5> {% for category in top3_country_categories %}
+                                    <li class="result-item">{{ category }}</li>
+                                {% endfor %}
+                                <br>
+                            </h5>
+                            <a class="btn btn-square" href=""><i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="service-item d-flex flex-column text-center rounded">
+                            <div class="service-icon flex-shrink-0">
+                                <i class="fa fa-check fa-2x"></i>
+                            </div>
+                            <h3 class="mb-3">Predicted Gender</h3>
+                            <h5 class="mb-3">{{ top_gender_category }}</h5>
+                                <br>
+                            <h3 class="mb-3">Predicted Age Group</h3>
+                            <h5 class="mb-3">{{ top_age_category }}</h5>
+                        
+                            <a class="btn btn-square" href=""><i class="fa fa-arrow-right"></i></a>
+                        </div>
+                        <br>
+                    </div>
+                        <div class="col-lg-444 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="feature-item bg-light rounded text-center p-4">
+                                <h4>Predicted Demand for {{ sub_category }} - Year: 2023-2024</h4>
+        
+                                <div style="height: 300px; overflow: hidden;">  <!-- Set a static height for the chart -->
+                                    <canvas id="predictedChart" width="400" height="200"></canvas>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <form action="{{ url_for('createplan') }}" method="post">
+
+                            <input type="hidden" name="top3_country_category" value="{{ top_county_category }}">
+                            <input type="hidden" name="top_gender_category" value="{{ top_gender_category }}">
+                            <input type="hidden" name="top_age_category" value="{{ top_age_category }}">
+                            <input type="hidden" name="sub_category" value="{{ sub_category }}">
+                            
+                            <input type="submit" class="btn btn-primary py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft" value="Create a Marketing Plan">
+                        
+                        </form>
+                        </div>
+                        </div>
+                    
+                    </div>
+                
+                    
+                </div>
+            </div>
+        </div>
+
+        
+
+
+        <script>
+            {% if chart_data_json %}
+            var chartData = {{ chart_data_json|safe }};
+        
+            var ctx = document.getElementById('predictedChart').getContext('2d');
+            var predictedChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: chartData.labels,
+                    datasets: [{
+                        label: 'Predicted Demand',
+                        data: chartData.data,
+                        borderColor: 'blue',
+                        fill: false,
+                        borderWidth: 2,
+                        pointRadius: 3,
+                        pointHoverRadius: 5,
+                        tension: 0.4,
+                        backgroundColor: 'rgba(0, 0, 0, 0)'  // Transparent fill color
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    title: {
+                        display: true,
+                        text: 'Predicted Demand Chart'
+                    },
+                    scales: {
+                        xAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Month'
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Predicted Demand'
+                            }
+                        }]
+                    }
+                }
+            });
+            {% endif %}
+        </script>
+        
+
+       
+
+        <!-- Footer Start -->
+        
+        <!-- Footer End -->
+
+
+        <!-- Back to Top -->
+        
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='lib/wow/wow.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/easing/easing.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/counterup/counterup.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/isotope/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/lightbox/js/lightbox.min.js') }}"></script>
+
+   
+
+    <!-- Template Javascript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <script>
+        // Load JSON file
+        fetch('/get_dropdown_options')
+            .then(response => response.json())
+            .then(data => {
+                var mainCategorySelect = document.getElementById('main_category');
+                var subCategorySelect = document.getElementById('sub_category');
+
+                // Populate main categories
+                data.mainCategories.forEach(function (category) {
+                    var option = document.createElement('option');
+                    option.value = category;
+                    option.textContent = category;
+                    mainCategorySelect.appendChild(option);
+                });
+
+                // Event listener for main category change
+                mainCategorySelect.addEventListener('change', function () {
+                    var selectedCategory = mainCategorySelect.value;
+                    var subOptions = data.subCategories[selectedCategory];
+
+                    // Clear existing options
+                    subCategorySelect.innerHTML = '';
+
+                    // Populate sub category options
+                    subOptions.forEach(function (option) {
+                        var optionElement = document.createElement('option');
+                        optionElement.value = option;
+                        optionElement.textContent = option;
+                        subCategorySelect.appendChild(optionElement);
+                    });
+
+                    // Enable the sub category dropdown
+                    subCategorySelect.disabled = false;
+
+                    // Remove the placeholder option
+                    subCategorySelect.querySelector('option[value=""]').remove();
+                });
+            });
+    </script>
+</body>
+
+</html>

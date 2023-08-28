@@ -1,0 +1,38 @@
+{
+    "mainCategories": [
+        "appliances",
+        "accessories",
+        "beauty & health",
+        "grocery & gourmet foods",
+        "men's clothing",
+        "sports & fitness",
+        "toys & baby products",
+        "women's clothing"
+    ],
+    "subCategories": {
+        "appliances": [
+            "Air Conditioners",
+            "Kitchen & Home Appliances",
+            "Refrigerators",
+            "Washing Machines"
+        ],
+        "accessories": [
+            "Bags & Luggage",
+            "Jewellery",
+            "Sunglasses",
+            "Watches"
+        ],
+        "beauty & health": [
+            "Health & Personal Care",
+            "Luxury Beauty",
+            "Make-up",
+            "Personal Care Appliances"
+        ],
+        "accesories": [
+            "Bags & Luggage",
+            "Jewellery",
+            "Sunglasses",
+            "Watches"
+        ]
+    }
+}

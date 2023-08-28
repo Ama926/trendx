@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Trend X - Unveiling Tomorrow's Markets, Today</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Favicon -->
+    <link href="{{ url_for('static', filename='img/favicon.ico') }}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&family=Jost:wght@500;600;700&display=swap" rel="stylesheet"> 
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{{ url_for('static', filename='lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="" class="navbar-brand p-0">
+                    <h1 class="m-0">Trend X</h1>
+                     
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto py-0">
+                        <a href="{{ url_for('index') }}" class="nav-item nav-link">Home</a>
+                        <a href="{{ url_for('about') }}" class="nav-item nav-link">Demographic</a>
+                        <a href="{{ url_for('demand_predict') }}" class="nav-item nav-link active">Demand</a> 
+                        <a href="{{ url_for('idea') }}" class="nav-item nav-link">Idea</a> 
+<!--
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="team.html" class="dropdown-item">Our Team</a>
+                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                                <a href="404.html" class="dropdown-item">404 Page</a>
+                            </div>
+                        </div>
+-->
+                        
+                    </div>
+                   <!-- <a href="" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Get Started</a> -->
+                </div>
+            </nav>
+
+            <div class="container-xxl py-5 bg-primary hero-header">
+                <div class="container my-5 py-5 px-lg-5">
+                    
+                </div>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+
+
+        <!-- Feature Start -->
+        <div class="container-xxl py-5">
+            
+            <div class="container py-5 px-lg-5">
+    
+                <div class="row g-4">                    
+                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                        <form method="post" id="myForm">
+                            <div class="f-img">
+                                <div class="feature-item bg-light rounded text-center p-4">
+                                    <i class="fa fa-3x fa-search text-primary mb-4"></i>
+                                    <div class="f-text">
+                                        <h4>Year</h4>
+                                <div class="dropdown">
+                                    <select class="form-selectz" id="main_category" name="main_category">
+                                        <option value="" selected disabled>Select Year</option>
+                                    </select>
+                                </div>
+                                <br><br>
+                                <h4>Month</h4>
+                                <div class="dropdown">
+                                    <select class="form-selectz" id="sub_category" name="sub_category" disabled>
+                                        <option value="" selected disabled>Select Month</option>
+                                    </select>
+                                </div>
+                                        <br>
+                                        <input type="submit" class="btn btn-secondary py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft" value="Predict">
+                                    </div>
+                                 </div>
+                            </div>
+                            
+                        </form>
+                    </div>
+                    <div class="col-lg-44 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="feature-item bg-light rounded text-center p-4">
+                            <canvas id="predictionChart"></canvas>
+                            <a class="btn btn-square" href=""><i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-444 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="feature-item bg-light rounded text-center p-4">
+                            <h4>Predicted Demand for Different Main Categories - Year: 2023-2024</h4>
+    
+                            <div style="height: 500px; overflow: hidden;">  <!-- Set a static height for the chart -->
+                                <canvas id="demandChart"></canvas>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <script>
+                        var ctx = document.getElementById('demandChart').getContext('2d');
+                        var chartData = {{ chart_data | tojson | safe }};
+                
+                        var monthNames = ['September-2023', 'October-2023', 'November-2023', 'December-2023', 'January-2024', 'February-2024', 'March-2024', 'April-2024', 'May-2024', 'June-2024', 'July-2024'];
+                        chartData.labels = monthNames;
+                
+                        var categoryColors = [
+                            'rgba(255, 99, 132, 1)',   // Red
+                            'rgba(54, 162, 235, 1)',   // Blue
+                            'rgba(255, 206, 86, 1)',   // Yellow
+                            'rgba(75, 192, 192, 1)',   // Teal
+                            'rgba(153, 102, 255, 1)',  // Purple
+                            'rgba(255, 159, 64, 1)',   // Orange
+                            'rgba(220, 20, 60, 1)',    // Crimson
+                            'rgba(255, 0, 255, 1)'     // Magenta
+                        ];
+                
+                        var datasets = chartData.datasets.map(function(dataset, index) {
+                            return Object.assign({}, dataset, {
+                                borderColor: categoryColors[index % categoryColors.length],
+                                backgroundColor: 'rgba(0, 0, 0, 0)',  // Transparent fill color
+                                borderWidth: 2,
+                                pointRadius: 3,
+                                pointHoverRadius: 5,
+                                tension: 0.4
+                            });
+                        });
+                
+                        var demandChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: chartData.labels,
+                                datasets: datasets
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                title: {
+                                    display: true,
+                                    text: 'Predicted Demand for Different Main Categories - Year: 2023-2024'
+                                },
+                                legend: {
+                                    display: true,
+                                    position: 'right',  // Align legend to top
+                                    labels: {
+                                        fontColor: 'black',  // Customize the font color
+                                        fontFamily: 'Arial',  // Customize the font family
+                                        boxWidth: 15,        // Set the width of each legend box
+                                        padding: 15          // Set the padding within the legend
+                                    }
+                                },
+                                scales: {
+                                    xAxes: [{
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Month'
+                                        }
+                                    }],
+                                    yAxes: [{
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Predicted Count'
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                    </script>
+                    
+
+                    <script>
+                        var predictionData = {{ prediction_results | safe }};
+                        
+                        predictionData.sort(function(a, b) {
+                            return b.predicted_count - a.predicted_count;  // Sort in descending order
+                        });
+                    
+                        var mainCategories = predictionData.map(function(result) {
+                            return result.main_category;
+                        });
+                        
+                        var predictedCounts = predictionData.map(function(result) {
+                            return result.predicted_count;
+                        });
+                    
+                        var ctx = document.getElementById('predictionChart').getContext('2d');
+                        var predictionChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: mainCategories,
+                                datasets: [{
+                                    label: 'Predicted Demand',
+                                    data: predictedCounts,
+                                    backgroundColor: 'rgba(0, 60, 105, 0.8)',  // Darker color
+                                    borderColor: 'rgba(0, 0, 0, 0)',  // No border
+                                    borderWidth: 1,
+                                    borderRadius: 10,  // Set the border radius for rounded edges
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                },
+                                plugins: {
+                                    legend: {
+                                        display: false  // Hide the legend for a modern look
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                    
+                    
+                    
+                </div>
+            </div>
+        </div>
+
+       
+
+        <!-- Footer Start -->
+       
+        <!-- Footer End -->
+
+
+        <!-- Back to Top -->
+        
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='lib/wow/wow.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/easing/easing.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/counterup/counterup.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/isotope/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/lightbox/js/lightbox.min.js') }}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <script>
+        // Load JSON file
+        fetch('/get_dropdown_dates')
+            .then(response => response.json())
+            .then(data => {
+                var mainCategorySelect = document.getElementById('main_category');
+                var subCategorySelect = document.getElementById('sub_category');
+
+                // Populate main categories
+                data.mainCategories.forEach(function (category) {
+                    var option = document.createElement('option');
+                    option.value = category;
+                    option.textContent = category;
+                    mainCategorySelect.appendChild(option);
+                });
+
+                // Event listener for main category change
+                mainCategorySelect.addEventListener('change', function () {
+                    var selectedCategory = mainCategorySelect.value;
+                    var subOptions = data.subCategories[selectedCategory];
+
+                    // Clear existing options
+                    subCategorySelect.innerHTML = '';
+
+                    // Populate sub category options
+                    subOptions.forEach(function (option) {
+                        var optionElement = document.createElement('option');
+                        optionElement.value = option;
+                        optionElement.textContent = option;
+                        subCategorySelect.appendChild(optionElement);
+                    });
+
+                    // Enable the sub category dropdown
+                    subCategorySelect.disabled = false;
+
+                    // Remove the placeholder option
+                    subCategorySelect.querySelector('option[value=""]').remove();
+                });
+            });
+    </script>
+</body>
+
+</html>
