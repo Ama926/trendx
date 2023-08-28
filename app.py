@@ -315,6 +315,6 @@ def createplan():
     return render_template('service.html', sections=marketing_plan_sections)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port=3000)
 
     
